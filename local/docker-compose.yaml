@@ -1,0 +1,13 @@
+# Use postgres/example user/password credentials
+version: '3.1'
+
+services:
+  db:
+    image: postgres
+    container_name: "postgres_financas"
+    environment:
+      POSTGRES_DB: financas
+      POSTGRES_USER: financas-user
+      POSTGRES_PASSWORD: financas-password
+    ports:
+      - 5432:5432

@@ -1,0 +1,39 @@
+micronaut:
+  application:
+    name: financas
+environment: Dev
+
+datasources:
+  default:
+    url: ${JDBC_URL:`jdbc:postgresql://localhost:5432/financas`}
+    username: ${JDBC_USER:financas-user}
+    password: ${JDBC_PASSWORD:financas-password}
+    driverClassName: ${JDBC_DRIVER:org.postgresql.Driver}
+
+jpa:
+  default:
+    packages-to-scan:
+      - 'com.jocivaldias'
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: none
+        show_sql: true
+flyway:
+  datasources:
+    default:
+      enabled: true
+jackson:
+  serialization:
+    writeDatesAsTimestamps: false
+
+# Tracing
+tracing:
+  jaeger:
+    enabled: ${JAEGER_ENABLE:`true`}
+    sender:
+      agentHost: ${JAEGER_AGENT_HOST:`localhost`}
+      agentPort: ${JAEGER_AGENT_PORT:`6831`}
+
+    sampler:
+      managerHostPort: ${JAEGER_SAMPLING_MANAGER:`localhost:5778`}
